@@ -14,6 +14,6 @@ nav:
   - Score: 
     - Overview: score.md
     - Models:
-      - Cash Advance: models/cashadv.md
-      - NSF Score: models/nsfscore.md
+      - Cash Advance: /models/cashadv.md
+      - NSF Score: /models/nsfscore.md
   - Combinations: combinations.md
