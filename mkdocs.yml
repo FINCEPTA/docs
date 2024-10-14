@@ -1,8 +1,6 @@
 site_name: Fincepta CashFlow UW API Docs
 theme:
   name: ivory
-plugins:
-  - mkapi
 nav:
 - index.md
 - features.md
