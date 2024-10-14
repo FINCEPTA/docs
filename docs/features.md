@@ -1,4 +1,4 @@
-# Features
+# **Features**
 
 ## Overview
 The `/v1/features` endpoint allows clients to generate features from a provided dataset. It is designed to extract and transform raw data into meaningful features that can be used for further analysis or model training.
@@ -44,7 +44,8 @@ curl -X POST "https://your-api-url/v1/enrich" \
 
 
 ### Example Response
-
+<div style="overflow-x: auto; max-width: 100%; max-height: 500px; overflow-y: auto;">
+<pre><code>
 ```json
 {
   "features": [
@@ -9479,3 +9480,5 @@ curl -X POST "https://your-api-url/v1/enrich" \
   }
 }
 ```
+</pre>
+</div>

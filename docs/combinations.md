@@ -1,6 +1,6 @@
-# Combinations
+# **Combinations**
 
-## Features and Enrich Endpoint
+## **1. Features and Enrich Endpoint**
 
 ### Overview
 The `/v1/features_and_enrich` endpoint allows clients to simultaneously generate features and enrich transaction data. This combined approach can save time and streamline workflows by providing enriched features in a single request.
@@ -22,7 +22,7 @@ curl -X POST "https://your-api-url/v1/features_and_enrich" \
 -H "x-client-id: your_client_id" \
 -F "file=@path_to_your_file.json"
 ```
-## Features and Score Endpoint
+## **2. Features and Score Endpoint**
 
 ### Overview
 The `/v1/score_and_features` endpoint allows clients to generate features from their dataset while simultaneously calculating a score. This combined functionality streamlines the process of transforming raw data into valuable insights, essential for predictive modeling and risk assessment.
@@ -45,7 +45,7 @@ curl -X POST "https://your-api-url/v1/score_and_features" \
 -F "file=@path_to_your_file.json"
 ```
 
-## Features, Enrichment, and Score Endpoint
+## **3. Features, Enrichment, and Score Endpoint**
 
 ### Overview
 The `/v1/score_and_features_and_enrichment` endpoint allows clients to generate features, enrich their data, and calculate a score all in one request. This comprehensive approach is ideal for complex data processing needs.

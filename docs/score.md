@@ -1,7 +1,19 @@
-# Score
+# **Score**
 
 ## Overview
 The `/v1/score` endpoint calculates a score based on the input data. This scoring mechanism is often used in risk assessment or predictive modeling scenarios to evaluate the likelihood of specific outcomes.
+
+## How to Use
+
+- **HTTP Method**: `POST`
+- **Headers**:
+  - `x-api-key`: Your API key for authorization.
+  - `x-client-id`: Your client ID for validation.
+
+- **Request Body**:
+  - You can send data either as a JSON file or JSON data in the request body.
+  - Ensure that the file is in `.json` format if uploading a file, and the parameter should be `file`.
+  - If sending data in the request body, make sure it is in JSON format.
 
 ### Example Request
 - Python
