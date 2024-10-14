@@ -1,9 +1,19 @@
 site_name: Fincepta CashFlow UW API Docs
 theme:
-  name: ivory
+  name: material
+  features:
+  - search
+  - navigation.tracking
+  - navigation.indexes
+  - navigation.prune
+  
 nav:
-- index.md
-- features.md
-- enrich.md
-- score.md
-- combinations.md
+  - Overview: index.md
+  - Enrich: enrich.md
+  - Features: features.md
+  - Score: 
+    - Overview: score.md
+    - Models:
+      - Cash Advance: models/cashadv.md
+      - NSF Score: models/nsfscore.md
+  - Combinations: combinations.md

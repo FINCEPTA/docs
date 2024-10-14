@@ -11,12 +11,13 @@ The `/v1/features` endpoint allows clients to generate features from a provided 
 
 - **Request Body**:
   - You can send data either as a JSON file or JSON data in the request body.
-  - Ensure that the file is in `.json` format if uploading a file.
+  - Ensure that the file is in `.json` format if uploading a file, and the parameter should be `file`.
+  - If sending data in the request body, make sure it is in JSON format.
 
 ### Example Request
-```bash
-curl -X POST "https://your-api-url/v1/features" \
--H "x-api-key: your_api_key" \
--H "x-client-id: your_client_id" \
--F "file=@path_to_your_file.json"
-```
+
+
+
+### Example Response
+
+```json
