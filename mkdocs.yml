@@ -26,11 +26,14 @@ extra_css:
   
 nav:
   - Overview: index.md
-  - Enrich: enrich.md
+  - Enrich:
+    - Enrich Report: enrich_report.md
+    - Enrich Transaction: enrich_transactions.md
+    - Feedback: feedback.md
   - Features: features.md
   - Score: 
     - Overview: score.md
-    - Models:
+    - Scores:
       - Cash Advance: models/cashadv.md
       - NSF Score: models/nsfscore.md
   - Combinations: combinations.md

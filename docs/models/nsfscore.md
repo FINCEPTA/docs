@@ -28,17 +28,17 @@ curl -X POST "https://your-api-url/v1/score" \
         "AA_code": "AA4"
       },
       {
-        "AA_Description": "Number of days the daily overall balance in cash/checking/saving accounts was less than $1000 in last 1 month",
-        "AA_code": "AA17"
-      },
-      {
-        "AA_Description": "Number of salary advance payments made below $100 in last 6 months",
-        "AA_code": "AA34"
+        "AA Description": "Maximum amount of debt payments made in last 1 month",
+        "AA Code": "AA32"
       },
       {
         "AA_Description": "Number of ecommerce payments made over $5 in last 1 month",
         "AA_code": "AA25"
       }
+      {
+        "AA_Description": "Number of days the daily overall balance in cash/checking/saving accounts was less than $1000 in last 1 month",
+        "AA_code": "AA17"
+      },
     ],
     "model_name": "nsfscore",
     "pred_prob": 0.21633579640379053,

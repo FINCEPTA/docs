@@ -67,3 +67,5 @@ curl -X POST "https://your-api-url/v1/score_and_features_and_enrichment" \
 -H "x-client-id: your_client_id" \
 -F "file=@path_to_your_file.json"
 ```
+
+***Note:*** All the above combinations useenrich_report endpoint under the hood. Any supported format of input JSON files from `Integrations` tab should work with any of these combinations.
