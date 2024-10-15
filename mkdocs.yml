@@ -1,11 +1,28 @@
 site_name: Fincepta CashFlow Intelligence API
 theme:
   name: material
+  logo: images/logo.png
+  custom_dir: overrides
+  palette: 
+    # Palette toggle for light mode
+    - scheme: fincepta-dark
+      toggle:
+        icon: material/brightness-7
+        name: Light Mode
+    # Palette toggle for dark mode
+    - scheme: fincepta-light
+      toggle:
+        icon: material/brightness-4
+        name: Dark Mode
+  font:
+    code: Attentica 4F
   features:
   - search
   - navigation.tracking
   - navigation.indexes
   - navigation.prune
+extra_css:
+  - stylesheets/extra.css
   
 nav:
   - Overview: index.md
