@@ -1,8 +1,8 @@
 
-# **Enrich Transaction**
+# **Enrich Transactions**
 
 ## Overview
-The `/v1/enrich_transaction` endpoint enriches transaction data by categorizing the transactions into our custom categories. This endpoint supports both JSON data and JSON files as input. Check the sample input below to use this endpoint properly.
+The `/v1/enrich_transaction` endpoint enriches transaction data by categorizing the transactions into our custom categories.
 
 
 ## How to Use
@@ -20,68 +20,6 @@ The `/v1/enrich_transaction` endpoint enriches transaction data by categorizing 
 
 ```json
 {
-    'transactions': [
-        {   'transaction_id': 'transaction_id',
-            'description': 'description',
-            'amount': 0.0,
-            'date': '2021-04-01',
-            'iso_currency_code': 'iso_currency_code',
-        },
-        {   'transaction_id': 'transaction_id',
-            'description': 'description',
-            'amount': 0.0,
-            'date': '2021-04-01',
-            'iso_currency_code': 'iso_currency_code',
-        }
-        
-    ]
-}
-```
-***NOTE***
-- JSON input with key `transactions` and value is a `list` of `dictionary` of transactions,
-- Required fields in the dictionary of each transaction are `transaction_id`, `description`, `amount`, `date`, `iso_currency_code`
-
-
-### Example Request
-
-- Python
-```python
-import requests
-import json
-
-url = "https://your-api-url/v1/enrich"
-headers = {
-    "x-api-key": "your_api_key",
-    "x-client-id": "your_client_id"
-}
-data = {
-    'transactions': [
-        {   'transaction_id': 'transaction_id',
-            'description': 'description',
-            'amount': 0.0,
-            'date': '2021-04-01',
-            'iso_currency_code': 'iso_currency_code',
-        },
-        {   'transaction_id': 'transaction_id',
-            'description': 'description',
-            'amount': 0.0,
-            'date': '2021-04-01',
-            'iso_currency_code': 'iso_currency_code',
-        }
-        
-    ]
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-
-print(response.json())
-```
-- Curl
-```bash
-curl -X POST "https://your-api-url/v1/enrich" \
--H "x-api-key: your_api_key" \
--H "x-client-id: your_client_id" \
--d '{
     "transactions": [
         {   "transaction_id": "transaction_id",
             "description": "description",
@@ -97,11 +35,71 @@ curl -X POST "https://your-api-url/v1/enrich" \
         }
         
     ]
-}'
+}
 ```
+***NOTE***
+- JSON input with key `transactions` and value is a `list` of `dictionary` of transactions,
+- Required fields in the dictionary of each transaction are `transaction_id`, `description`, `amount`, `date`, `iso_currency_code`
+- This endpoint supports both JSON data and JSON files as input.
 
 
+### Example Request
 
+- Python
+```python
+import requests
+import json
+
+url = "https://your-api-url/v1/enrich"
+headers = {
+    "x-api-key": "your_api_key",
+    "x-client-id": "your_client_id"
+}
+data = {
+    "transactions": [
+        {   "transaction_id": "transaction_id",
+            "description": "description",
+            "amount": 0.0,
+            "date": "2021-04-01",
+            "iso_currency_code": "iso_currency_code",
+        },
+        {   "transaction_id": "transaction_id",
+            "description": "description",
+            "amount": 0.0,
+            "date": "2021-04-01",
+            "iso_currency_code": "iso_currency_code",
+        }
+        
+    ]
+}
+
+response = requests.post(url, headers=headers, data=json.dumps(data))
+
+print(response.json())
+```
+- Curl
+```bash
+curl -X POST "https://your-api-url/v1/enrich" \
+-H "x-api-key: your_api_key" \
+-H "x-client-id: your_client_id" \
+-d "{
+    "transactions": [
+        {   "transaction_id": "transaction_id",
+            "description": "description",
+            "amount": 0.0,
+            "date": "2021-04-01",
+            "iso_currency_code": "iso_currency_code",
+        },
+        {   "transaction_id": "transaction_id",
+            "description": "description",
+            "amount": 0.0,
+            "date": "2021-04-01",
+            "iso_currency_code": "iso_currency_code",
+        }
+        
+    ]
+}"
+```
 
 ### Example Response
 
@@ -109,579 +107,168 @@ curl -X POST "https://your-api-url/v1/enrich" \
 <pre><code>
 ```json
 {
-  "enriched_transactions": [
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 30.0,
-      "iso_currency_code": "USD",
-      "name": "Publix",
-      "pending": false,
-      "transaction_category_code": "food_debit",
-      "transaction_category_num": 53,
-      "transaction_id": "ydM441pwoBFyZOVEmjLBcqja5ANbPwFRYjg8L",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 22.78,
-      "iso_currency_code": "USD",
-      "name": "Shell",
-      "pending": false,
-      "transaction_category_code": "gasstation_debit",
-      "transaction_category_num": 78,
-      "transaction_id": "MM4BBgRNwdHRNmVqXQ4RIgVYQ9MajKC0gZYyn",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 4.99,
-      "iso_currency_code": "USD",
-      "name": "Oneblinc Salary Adv",
-      "pending": false,
-      "transaction_category_code": "ewapmnt_debit",
-      "transaction_category_num": 6,
-      "transaction_id": "KVjPPgNp5RU3Vk1XB5NLTAyDOxk7weIyJxmbd",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 25.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "avEdd6R4XxCkVKd4Re3qSEre416jabT9OVjv1",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": -150.0,
-      "iso_currency_code": "USD",
-      "name": "ATM Deposit",
-      "pending": false,
-      "transaction_category_code": "atm_credit",
-      "transaction_category_num": 1,
-      "transaction_id": "k5Eyykp70VC835J7egM6iPDnwN4yoVHb1VvYR",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 25.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "mbEkkvpVrMH5KmEVQrNdFJPO6JJDwMFNVomxZ",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 22.16,
-      "iso_currency_code": "USD",
-      "name": "Ole Times Lak",
-      "pending": false,
-      "transaction_category_code": "other_debit",
-      "transaction_category_num": 128,
-      "transaction_id": "RpZAAgRLP1HoVa0L6A9pHMa8jL7dpki4gBBYr",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 12.24,
-      "iso_currency_code": "USD",
-      "name": "Ole Times Lak",
-      "pending": false,
-      "transaction_category_code": "other_debit",
-      "transaction_category_num": 128,
-      "transaction_id": "Qn8kkgR61DfpK4D6Q5VvsYvRa61dpmhzPdd60",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 10.0,
-      "iso_currency_code": "USD",
-      "name": "Hard Rock",
-      "pending": false,
-      "transaction_category_code": "entertainment_debit",
-      "transaction_category_num": 71,
-      "transaction_id": "E5yddjROA7C4MPqpeBR6FQRYXe1zg8tJNLLzk",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 5.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "ngnAA0pOxECEka3OJ5jMHEomdapDXvH0Vaaod",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 28.09,
-      "iso_currency_code": "USD",
-      "name": "Red Ginger",
-      "pending": false,
-      "transaction_category_code": "other_debit",
-      "transaction_category_num": 128,
-      "transaction_id": "p9MxxrpEYQiwv0zPgVnMF8P4nLbrExfZm66bE",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 24.91,
-      "iso_currency_code": "USD",
-      "name": "Zaxbys",
-      "pending": false,
-      "transaction_category_code": "food_debit",
-      "transaction_category_num": 53,
-      "transaction_id": "vQMgg6pN51SqxY45wDdmC57vn9xgVmFkMRgRk",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 17.1,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "DZ3xx0RVvgFX31o07DRptY47n0oD9NFRpQVRz",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 16.09,
-      "iso_currency_code": "USD",
-      "name": "Sakura Buffet",
-      "pending": false,
-      "transaction_category_code": "other_debit",
-      "transaction_category_num": 128,
-      "transaction_id": "0L0nnjOm5qUDxVbZynaJHBj61aPwBNCv5naBx",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 14.3,
-      "iso_currency_code": "USD",
-      "name": "Lake City Nutrit Nutrition",
-      "pending": false,
-      "transaction_category_code": "food_debit",
-      "transaction_category_num": 53,
-      "transaction_id": "1DjnnrJKNBHRNVgze1krFM8V5VrLDaUjd9kRg",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 14.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "wnMRRLpe9PfBeEPmJ8wRhZa3R0jdg6UvqJyvR",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 10.5,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "qVMrr4pRYdU60qNwmKkOfaj4oVkyqEcEo5BEP",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 8.53,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "KVjPPgNp5RU3Vk1XB5NYhV0g4xoRbPfm5K1mJ",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 6.57,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "zwMaaPd6j3HK5X7poqDgFedr9r7Vo6fdXPEN6",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": -100.0,
-      "iso_currency_code": "USD",
-      "name": "Internal Account Transfer",
-      "pending": false,
-      "transaction_category_code": "banktrnsfr_credit",
-      "transaction_category_num": 116,
-      "transaction_id": "mbEkkvpVrMH5KmEVQrN1I5Y9d9XwJPF3w7pqA",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 5.25,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "drpLL1aJ4ZfE6vPJ1YmnFqQRNRMxzwtym5ZE9",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "Qn8kkgR61DfpK4D6Q5zMURPnNKY1PnUzZknyv",
-      "amount": 100.0,
-      "iso_currency_code": "USD",
-      "name": "Internal Account Transfer",
-      "pending": false,
-      "transaction_category_code": "banktrnsfr_debit",
-      "transaction_category_num": 117,
-      "transaction_id": "Qn8kkgR61DfpK4D6Q5VATx9eLebdorIzBa7Zx",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 221.81,
-      "iso_currency_code": "USD",
-      "name": "Advance America",
-      "pending": false,
-      "transaction_category_code": "loanpmnt_debit",
-      "transaction_category_num": 44,
-      "transaction_id": "63JeewDjNAHwRvdN4ak9i0qkoNpzbjfNkZyNN",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 150.0,
-      "iso_currency_code": "USD",
-      "name": "Wes Student Tic Httpswes",
-      "pending": false,
-      "transaction_category_code": "education_debit",
-      "transaction_category_num": 103,
-      "transaction_id": "drpLL1aJ4ZfE6vPJ1YmZS1z8kEXZaAHQVPyQK",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 62.82,
-      "iso_currency_code": "USD",
-      "name": "Enova Loc Netcrcoll",
-      "pending": false,
-      "transaction_category_code": "loanpmnt_debit",
-      "transaction_category_num": 44,
-      "transaction_id": "LOrqqMRXdQHjPAegO7XNt6R9aZx7JdFBDjmBm",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 47.01,
-      "iso_currency_code": "USD",
-      "name": "Sunstop St",
-      "pending": false,
-      "transaction_category_code": "other_debit",
-      "transaction_category_num": 128,
-      "transaction_id": "AxP88k0gB5FDVoy0MeO1uNBP90VbkQUnJxbnY",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 31.5,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "BJqxxAj7EoUEDnA45aejSjYq6an0Z9f7aRd7L",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 27.66,
-      "iso_currency_code": "USD",
-      "name": "Klarna",
-      "pending": false,
-      "transaction_category_code": "bnplpmnt_debit",
-      "transaction_category_num": 42,
-      "transaction_id": "63JeewDjNAHwRvdN4akLtQXgZgmAqaIyBO7va",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 24.88,
-      "iso_currency_code": "USD",
-      "name": "Klarna",
-      "pending": false,
-      "transaction_category_code": "bnplpmnt_debit",
-      "transaction_category_num": 42,
-      "transaction_id": "mbEkkvpVrMH5KmEVQrN9cQJ18qNjEmtvJE3vM",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 23.13,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "ydM441pwoBFyZOVEmjLqsLmeRA08dzFg7P3g7",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 22.58,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "vQMgg6pN51SqxY45wDdyuBKQvbwgxat0DPk0n",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 21.04,
-      "iso_currency_code": "USD",
-      "name": "Klarna",
-      "pending": false,
-      "transaction_category_code": "bnplpmnt_debit",
-      "transaction_category_num": 42,
-      "transaction_id": "LOrqqMRXdQHjPAegO7XBc4NMqMvnRwUm6VzAZ",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 19.59,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "DZ3xx0RVvgFX31o07DRdc1aMQMBk45hV7mknX",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 10.29,
-      "iso_currency_code": "USD",
-      "name": "Sunstop St",
-      "pending": false,
-      "transaction_category_code": "other_debit",
-      "transaction_category_num": 128,
-      "transaction_id": "9k5xxDqazjfoAVb83OXxTv10YmOgpjFk05o6r",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 1.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "0L0nnjOm5qUDxVbZynavU0zJ13nD3NfvXbRoN",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 389.42,
-      "iso_currency_code": "USD",
-      "name": "Progressive",
-      "pending": false,
-      "transaction_category_code": "insurance_debit",
-      "transaction_category_num": 97,
-      "transaction_id": "jZE33Kpg09FJex5Y1Mn9sx7aJONqOnfjBLamL",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "ngnAA0pOxECEka3OJ59nFm8bg7Ep8bI0d8yQo",
-      "amount": -25.0,
-      "iso_currency_code": "USD",
-      "name": "Defense Finance and Accounting Service",
-      "pending": false,
-      "transaction_category_code": "othservices_credit",
-      "transaction_category_num": 104,
-      "transaction_id": "ngnAA0pOxECEka3OJ5jefxA8LXQ06JtMgxOQ6",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "Qn8kkgR61DfpK4D6Q5zMURPnNKY1PnUzZknyv",
-      "amount": -25.0,
-      "iso_currency_code": "USD",
-      "name": "Defense Finance and Accounting Service",
-      "pending": false,
-      "transaction_category_code": "othservices_credit",
-      "transaction_category_num": 104,
-      "transaction_id": "p9MxxrpEYQiwv0zPgVneIXJAYEyKaOU7gdPej",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "p9MxxrpEYQiwv0zPgVXrC4AzRQ8bAzUZBOVeM",
-      "amount": -60.0,
-      "iso_currency_code": "USD",
-      "name": "Defense Finance and Accounting Service",
-      "pending": false,
-      "transaction_category_code": "payroll_credit",
-      "transaction_category_num": 125,
-      "transaction_id": "X1EXXga30KHLe6r3qAdbfYaNxZ80wqFO5VvrM",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 50.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "ydM441pwoBFyZOVEmjL7TL4OD339jKUrbMMdz",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 6.0,
-      "iso_currency_code": "USD",
-      "name": "McDonalds",
-      "pending": false,
-      "transaction_category_code": "food_debit",
-      "transaction_category_num": 53,
-      "transaction_id": "3P4nnawAvyFwZK9dRBkvhz5DjQQqvkCVExx4N",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": -1340.17,
-      "iso_currency_code": "USD",
-      "name": "Defense Finance and Accounting Service",
-      "pending": false,
-      "transaction_category_code": "payroll_credit",
-      "transaction_category_num": 125,
-      "transaction_id": "LOrqqMRXdQHjPAegO7XYhdBK1pxew6Id3Lkoz",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": -69.0,
-      "iso_currency_code": "USD",
-      "name": "Internal Account Transfer",
-      "pending": false,
-      "transaction_category_code": "banktrnsfr_credit",
-      "transaction_category_num": 116,
-      "transaction_id": "RpZAAgRLP1HoVa0L6A9dcZz7zQ5PgZt4Eop56",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "p9MxxrpEYQiwv0zPgVXrC4AzRQ8bAzUZBOVeM",
-      "amount": 69.0,
-      "iso_currency_code": "USD",
-      "name": "Internal Account Transfer",
-      "pending": false,
-      "transaction_category_code": "banktrnsfr_debit",
-      "transaction_category_num": 117,
-      "transaction_id": "ngnAA0pOxECEka3OJ5jDc81p1QLxw8F0PNY6x",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "p9MxxrpEYQiwv0zPgVXrC4AzRQ8bAzUZBOVeM",
-      "amount": 50.0,
-      "iso_currency_code": "USD",
-      "name": "Internal Account Transfer",
-      "pending": false,
-      "transaction_category_code": "banktrnsfr_debit",
-      "transaction_category_num": 117,
-      "transaction_id": "e4pDDPa8v5HRLna8OjpYiOzdoRRvpMUMZ77rN",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 25.0,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "ORxyyEXdL6CD3jKd7mX4FbvzRN9Pg3FV69w05",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 10.12,
-      "iso_currency_code": "USD",
-      "name": "Shell",
-      "pending": false,
-      "transaction_category_code": "gasstation_debit",
-      "transaction_category_num": 78,
-      "transaction_id": "ngnAA0pOxECEka3OJ5jpiYdK07V3dxS5wZVD7",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": -0.01,
-      "iso_currency_code": "USD",
-      "name": "ATM Deposit",
-      "pending": false,
-      "transaction_category_code": "atm_credit",
-      "transaction_category_num": 1,
-      "transaction_id": "RpZAAgRLP1HoVa0L6A9gi0jJ4NEojPCbj7gNK",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": -50.0,
-      "iso_currency_code": "USD",
-      "name": "Internal Account Transfer",
-      "pending": false,
-      "transaction_category_code": "banktrnsfr_credit",
-      "transaction_category_num": 116,
-      "transaction_id": "KVjPPgNp5RU3Vk1XB5NJsV3mrnnXy5fnqXX8k",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 10.5,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "wnMRRLpe9PfBeEPmJ8w6i5ZakzQmNZceJK4eV",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 5.25,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "PQJKKgRwDLSgyrzwxBm4ivxpQ46PXxFa5oxaq",
-      "unofficial_currency_code": null
-    },
-    {
-      "account_id": "MM4BBgRNwdHRNmVqXQZAtoKOBRZrKOF5jQ1da",
-      "amount": 2.7,
-      "iso_currency_code": "USD",
-      "name": "Cash App",
-      "pending": false,
-      "transaction_category_code": "p2ptrfr_debit",
-      "transaction_category_num": 18,
-      "transaction_id": "p9MxxrpEYQiwv0zPgVnRS5O0gNePzOc7L307g",
-      "unofficial_currency_code": null
-    }
+  'enriched_transactions':
+  [
+  {'account_id': '10bfb591-da0b-48d1-a647-c8d3e5eb7cc6',
+   'amount': -250.0,
+   'date': '2021-07-22',
+   'description': 'Online Transfer from SAV ...6830 transaction#: 12229037507',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'banktrnsfr_credit',
+   'transaction_category_num': 116,
+   'transaction_id': '182c43e0-8d10-4d51-938b-67d9f257b212'},
+  {'account_id': '01e357b1-e621-42b4-a47e-4ba2c4fae64b',
+   'amount': 70.0,
+   'date': '2021-02-03',
+   'description': 'VENMO            PAYMENT    5205841049      WEB ID: 3264681992',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'p2ptrfr_debit',
+   'transaction_category_num': 18,
+   'transaction_id': 'ff9989f5-83db-444c-9ca8-3ab51ee496da'},
+  {'account_id': '58790645-dc1e-4947-847a-d4369e245324',
+   'amount': 10.56,
+   'date': '2020-12-28',
+   'description': 'TARGET DEBIT CRD ACH TRAN   000681481903991 WEB ID: 1410215170',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'groceries_debit',
+   'transaction_category_num': 65,
+   'transaction_id': '632f96af-816e-4409-bd96-fb651fe52210'},
+  {'account_id': '883585c9-8069-429c-a3d3-0cc40fd1f56e',
+   'amount': 30.0,
+   'date': '2021-01-19',
+   'description': 'VENMO            PAYMENT    5107205503      WEB ID: 3264681992',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'p2ptrfr_debit',
+   'transaction_category_num': 18,
+   'transaction_id': '9719fb97-0dc9-4167-b558-4ca88bb49836'},
+  {'account_id': 'b9d35a2a-4762-4831-8a8a-3a147c34f344',
+   'amount': 85.63,
+   'date': '2021-03-10',
+   'description': 'TARGET DEBIT CRD ACH TRAN   000681481901399 POS ID: 1410215170',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'groceries_debit',
+   'transaction_category_num': 65,
+   'transaction_id': '44649b83-45df-4d0e-bf18-44f96ece3367'},
+  {'account_id': '7b779271-8fdd-435a-962a-d7ef423b4f01',
+   'amount': 33.59,
+   'date': '2021-08-11',
+   'description': 'AFFIRM *PAYMENT 855-423-3729 CA              08/10',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'bnplpmnt_debit',
+   'transaction_category_num': 42,
+   'transaction_id': 'd2152a8f-de3b-448e-8034-e7d167b46d1a'},
+  {'account_id': 'b7765b2a-b407-4155-b644-289f8d2460e5',
+   'amount': 400.0,
+   'date': '2020-02-24',
+   'description': 'Payment to Chase card ending in 9617 02/24',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'banktrnsfr_debit',
+   'transaction_category_num': 117,
+   'transaction_id': '554933aa-a46d-4bcd-8a1a-db614ccde300'},
+  {'account_id': 'f71661d6-9896-4c77-b429-f4d0db05a2ee',
+   'amount': 250.0,
+   'date': '2021-06-25',
+   'description': 'Online Transfer to  SAV ...4260 transaction#: 11956760410',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'banktrnsfr_debit',
+   'transaction_category_num': 117,
+   'transaction_id': '06182999-8149-4757-bc3c-22817905db3e'},
+  {'account_id': 'eecdf14e-5e31-4fef-8976-50709c1b9d83',
+   'amount': 300.0,
+   'date': '2021-07-01',
+   'description': 'VENMO            PAYMENT    1014465676779   WEB ID: 3264681992',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'p2ptrfr_debit',
+   'transaction_category_num': 18,
+   'transaction_id': '6665c42c-fa76-496f-b4c7-bd0dee3fca83'},
+  {'account_id': '051d7f8f-2b95-426f-b5fd-2cc21732f82d',
+   'amount': 25.0,
+   'date': '2021-09-20',
+   'description': 'STARBUCKS 800-782-728 800-782-7282 WA        09/17',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'food_debit',
+   'transaction_category_num': 53,
+   'transaction_id': 'fd2671b9-a06f-4279-9523-1c3ef45cf8e0'},
+  {'account_id': 'f3d6466f-a36a-40a4-87ba-e2ee474a1893',
+   'amount': 2.34,
+   'date': '2021-03-15',
+   'description': 'TARGET DEBIT CRD ACH TRAN   000681481903991 WEB ID: 1410215170',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'groceries_debit',
+   'transaction_category_num': 65,
+   'transaction_id': '52c31c4c-0f4d-4b7b-a238-7ff401a15346'},
+  {'account_id': 'e61b6dec-b793-4813-8213-ec3541f48f0c',
+   'amount': -39.72,
+   'date': '2020-11-13',
+   'description': 'VENMO            CASHOUT                    PPD ID: 5264681992',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'p2ptrfr_credit',
+   'transaction_category_num': 17,
+   'transaction_id': 'aa754f05-9a72-4dda-b6ce-eb6ae0cc790e'},
+  {'account_id': '716cc7ab-c1c6-4ed9-8e19-91199b767023',
+   'amount': 500.0,
+   'date': '2019-10-15',
+   'description': 'Payment to Chase card ending in 9617 10/15',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'banktrnsfr_debit',
+   'transaction_category_num': 117,
+   'transaction_id': 'f09b570f-b821-4ecf-a9fb-c320a65298f1'},
+  {'account_id': '41f52e49-ee8d-4014-b7d5-b8e145a328af',
+   'amount': 18.83,
+   'date': '2021-06-14',
+   'description': 'TARGET DEBIT CRD ACH TRAN   000681481903991 WEB ID: 1410215170',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'groceries_debit',
+   'transaction_category_num': 65,
+   'transaction_id': '0251b871-cefa-47c9-bf93-62ec317c9db2'},
+  {'account_id': 'e5e61aab-f39a-4ab1-b8fc-b7aacb8d3f0c',
+   'amount': 1000.0,
+   'date': '2021-02-25',
+   'description': 'Online Transfer to SAV ...4260 transaction#: 11253495056 02/25',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'banktrnsfr_debit',
+   'transaction_category_num': 117,
+   'transaction_id': 'b05db037-9fe5-4f67-9b25-739922e1090d'},
+  {'account_id': '8d477ff8-aae0-4262-ac21-88f2e6fa95f9',
+   'amount': 58.0,
+   'date': '2021-08-16',
+   'description': 'VENMO            PAYMENT    1015216990266   WEB ID: 3264681992',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'p2ptrfr_debit',
+   'transaction_category_num': 18,
+   'transaction_id': '639ce8fb-25b7-4a41-869c-646c25ca916b'},
+  {'account_id': '6de3259e-bee4-4062-929a-3d01a84e6bf3',
+   'amount': -600.0,
+   'date': '2021-02-02',
+   'description': 'VENMO            CASHOUT                    PPD ID: 5264681992',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'p2ptrfr_credit',
+   'transaction_category_num': 17,
+   'transaction_id': '04b324ae-4a7b-4117-9293-d98d942bb565'},
+  {'account_id': '31b12334-f5cf-4ea8-ac5d-3782bbdd47c9',
+   'amount': 6.06,
+   'date': '2021-08-05',
+   'description': 'TARGET DEBIT CRD ACH TRAN   000681481903991 WEB ID: 1410215170',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'groceries_debit',
+   'transaction_category_num': 65,
+   'transaction_id': '51087e76-53e4-4fb8-b0fd-71397f112695'},
+  {'account_id': '04d41e3e-7a43-4a5c-9fe0-3be6e51365b7',
+   'amount': 100.0,
+   'date': '2021-09-13',
+   'description': 'Payment to Chase card ending in 9617 09/13',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'banktrnsfr_debit',
+   'transaction_category_num': 117,
+   'transaction_id': '7e2b3a4d-2ca7-4420-9e85-5845e9568a25'},
+  {'account_id': '175f0df3-b792-49fb-9ae2-6485c691318d',
+   'amount': -500.0,
+   'date': '2020-09-03',
+   'description': 'FEMA TREAS 310     MISC PAY 627445996700700 CCD ID: 9101036151',
+   'iso_currency_code': 'USD',
+   'transaction_category_code': 'taxrefund_credit',
+   'transaction_category_num': 7,
+   'transaction_id': 'ab49cc2a-b8ce-45a7-992c-5071620268ad'}
   ]
 }
 ```

@@ -20,11 +20,11 @@
     --md-default-fg-color--lightest:     #ffffff;
     
     --md-typeset-color:                 #ffffff;
-    --md-typese-a-color:                #ffffff;
+    --md-typese-a-color:                #030303;
 
     --md-default-bg-color:               #105B63;
     --md-accent-fg-color:                #ffffff;
-    /* --md-default-bg-color--light:        #ffffff;
+    --md-default-bg-color--light:        #ffffff;
     --md-default-bg-color--lighter:      #ffffff;
-    --md-default-bg-color--lightest:     #ffffff; */
+    --md-default-bg-color--lightest:     #ffffff;
   }
