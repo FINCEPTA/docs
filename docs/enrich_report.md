@@ -2,7 +2,7 @@
 # **Enrich Report**
 
 ## Overview
-The `/v1/enrich_report` endpoint enriches transaction data by categorizing the transactions into our custom categories. This endpoint supports both JSON data and JSON files as input. Supported formats are `Plaid Transaction Report` and `Plaid Asset Report`
+The `/v1/enrich_report` endpoint enriches transactions in a report by categorizing the transactions into our custom categories. This endpoint supports both JSON data and JSON files as input. Supported formats are `Plaid Transaction Report` and `Plaid Asset Report`
 
 ## How to Use
 - **HTTP Method**: `POST`
