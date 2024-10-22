@@ -1,8 +1,11 @@
 # **Integrations**
 
-## Plaid
+## **Plaid**
 
-Supported formats from Plaid include `transactions report` and `asset report`.
+Supported formats from Plaid are:<br>
+<!-- create a list of two bullets -->
+- `Transaction Report`<br>
+- `Asset Report`<br>
 
 <br>
 More Integrations coming soon
