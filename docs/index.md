@@ -5,26 +5,26 @@ This document outlines the API endpoints available in `Fincepta Cashflow Intelli
 
 ## Base URL
 ```
-http://your-api-url/v1/
+https://cfil.fincepta.com/{client_id}/
 ```
 
 ## Endpoints
 
 ### 1. Enrich
 
-Endpoint to enrich transactions with our categories.
+Endpoint to enrich bank transactions with categorization & recurrence.
 
 ### 2. Features
 
-Endpoint to generate features for a given input data
+Endpoint to generate features for a report. These features cover insights (on assets, liabilities & cashflows) & complex risk predictive features.
 
 ### 3. Score
 
-Endpoint to calculate a score based on the input data, available scores are `cashadvance` and `nsf`.
+Endpoint to generate a risk score based on the input report, available scores are `cashadvance` and `nsf`.
 
 ### 4. Combinations
 
-Combination of multiple endpoints to enrich, generate features and calculate a score based on the input data. A total of 3 combinations are available.
+Combination of multiple endpoints to enrich, generate features and scores based on the input data. A total of 3 combinations are available.
 
 1. Features + Score
 2. Features + Enrich

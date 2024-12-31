@@ -22,7 +22,7 @@ The `/v1/enrich_report` endpoint enriches transactions in a report by categorizi
 import requests
 import json
 
-url = "https://your-api-url/v1/enrich"
+url = "https://cfil.fincepta.com/{client_id}/enrich"
 headers = {
     "x-api-key": "your_api_key",
     "x-client-id": "your_client_id"
